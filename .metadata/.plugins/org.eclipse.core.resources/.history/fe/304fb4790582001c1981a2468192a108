@@ -1,0 +1,28 @@
+package com.ci.resource;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ci.model.Employee;
+import com.ci.repository.EmployeeRepo;
+
+@RestController
+@RequestMapping("/api/v1/")
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeRepo employeeRepo;
+	
+	/**
+	 * Get All Employee
+	 * */
+	public ResponseEntity<List<Employee>> fetchAllEmployee(Employee employee){
+		List<Employee> findAllEmployee = employeeRepo.findAll();
+		return new ResponseEntity<List<Employee>>(findAllEmployee, HttpStatus.FOUND);
+	}
+}

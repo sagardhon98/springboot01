@@ -1,0 +1,13 @@
+Hey {fName} {lName} , :
+<br/>
+
+Welcome to Career infotech Family, Your registration is almost complted.
+Please use below details to unlock your account.<br/>
+<br/>
+
+Temporary Password : {temp_pass}<br/>
+
+<br/>
+
+Thanks & Regards,<br/>
+Career Infotech.<br/>

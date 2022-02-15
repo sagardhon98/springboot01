@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="pagination_part1"/>
+<aop-project name="phonebook_application"/>
+<aop-project name="bookstore_using_h2db"/>
+<aop-project name="crud_operation_practice"/>
+<aop-project name="spring_practice"/>
+<aop-project name="crud_operation"/>
+<aop-project name="firstboot"/>
+<aop-project name="spring_project_test_19_jul"/>
+<aop-project name="user_management"/>
+<aop-project name="user_registration"/>
+<aop-project name="springboot_backend"/>
+<aop-project name="dao_revision"/>
+<aop-project name="find_by"/>
+<aop-project name="book_application"/>
+<aop-project name="softDelete_hardDelete"/>
+<aop-project name="rest_api"/>
+<aop-project name="rest_api_irctc"/>
+<aop-project name="stocks"/>
+</aop-reference-model>

@@ -1,0 +1,11 @@
+INDEX VERSION 1.131
+H:\spring_boot_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2372969698.index
+\firstboot\src\main\java
+H:\spring_boot_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3543315367.index
+\crud_operation\src\main\java
+H:\spring_boot_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\138078339.index
+\spring_practice\src\main\java
+H:\spring_boot_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3717991927.index
+\book_application\src\main\java
+H:\spring_boot_workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\866744154.index
+\crud_operation_practice\src\main\java

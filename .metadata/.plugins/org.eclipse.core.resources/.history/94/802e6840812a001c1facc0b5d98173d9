@@ -1,0 +1,157 @@
+package com.ci.service.impl;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ci.entities.City;
+import com.ci.entities.Country;
+import com.ci.entities.State;
+import com.ci.entities.User;
+import com.ci.repository.CityRepo;
+import com.ci.repository.CountryRepo;
+import com.ci.repository.StateRepo;
+import com.ci.repository.UserRepo;
+import com.ci.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private CountryRepo countryRepo;
+
+	@Autowired
+	private StateRepo stateRepo;
+
+	@Autowired
+	private CityRepo cityRepo;
+
+	@Autowired
+	private UserRepo userRepo;
+
+	/**
+	 * for country
+	 */
+	@Override
+	public Map<Long, String> getCountry() {
+		List<Country> findAllCountry = countryRepo.findAll();
+		Map<Long, String> countryMap = new HashMap<>();
+		for (Country country : findAllCountry) {
+			countryMap.put(country.getId(), country.getCountry_name());
+		}
+		return countryMap;
+	}
+
+	/**
+	 * for state
+	 */
+	@Override
+	public Map<Long, String> getState(Long country_id) {
+		List<State> findAllState = stateRepo.findStateById(country_id);
+		Map<Long, String> stateMap = new HashMap<>();
+		for (State state : findAllState) {
+			stateMap.put(state.getId(), state.getState_name());
+		}
+		return stateMap;
+	}
+
+	/**
+	 * for city
+	 */
+	@Override
+	public Map<Long, String> getCity(Long state_id) {
+		List<City> findAllCity = cityRepo.findCityById(state_id);
+		Map<Long, String> cityMap = new HashMap<>();
+		for (City city : findAllCity) {
+			cityMap.put(city.getId(), city.getCity_name());
+		}
+		return cityMap;
+	}
+
+	/**
+	 * for save user
+	 */
+	@Override
+	public User saveUser(User user) {
+		User save = userRepo.save(user);
+		return save;
+	}
+
+	@Override
+	public boolean forgotPassword(String email) {
+		User findUserByEmail = userRepo.findUserByEmail(email);
+		boolean status = false;
+		if (findUserByEmail == null) {
+			return status;
+		} else {
+			status = true;
+			return status;
+		}
+	}
+
+	/**
+	 * get user
+	 */
+	@Override
+	public Map<Long, String> getUser() {
+		List<User> findAllUser = userRepo.findAll();
+		Map<Long, String> userMap = new HashMap<>();
+		for (User user : findAllUser) {
+			userMap.put(user.getId(), user.getEmail());
+		}
+		return userMap;
+	}
+
+	@Override
+	public String readEmailBodyToUnlockAccount(User user) {
+		String emailBody = "";
+		FileReader fileReader;
+		StringBuffer sb = new StringBuffer();
+
+		try {
+			String file = "unlockEmail.txt";
+			fileReader = new FileReader(file);
+
+			BufferedReader br = new BufferedReader(fileReader);
+			String line = br.readLine();
+			while (line != null) {
+				sb.append(line);
+				line = br.readLine();
+			}
+			emailBody = sb.toString();
+			
+			emailBody = emailBody.replace("{fName}", user.getFirst_name());
+			emailBody = emailBody.replace("{lName}", user.getLast_name());
+			emailBody = emailBody.replace("{temp_pass}", user.getTemp_passowrd());
+		} catch (Exception e) {
+			System.out.println("Error..." + e.getMessage());
+		}
+
+		return emailBody;
+	}
+
+	@Override
+	public String getPassword(Integer length) {
+		Random random = new Random();
+		return null;
+	}
+
+//	@Override
+//	public String loginCheckByUsernameAndPassword(String username, String password) {
+//		String message = null;
+//		User userFound = userRepo.findUserByEmailAndTempPassword(username, password);
+//		if(userFound == null) {
+//			message = "Invalid Credential";
+//		}
+//		else {
+//			message = "Login Successfully";
+//		}
+//		return message;
+//	}
+}
